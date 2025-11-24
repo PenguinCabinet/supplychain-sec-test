@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "supplychain-sec-test",
   "version": "1.0.0",
   "dependencies": {
     "@ctrl/tinycolor": "4.1.1"
