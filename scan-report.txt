@@ -1,0 +1,2 @@
+NAME             INSTALLED  TYPE  VULNERABILITY        SEVERITY  EPSS  RISK  
+@ctrl/tinycolor  4.1.1      npm   GHSA-qjqf-7j6f-82c4  [1;38;5;198mCritical[0m  N/A   N/A   

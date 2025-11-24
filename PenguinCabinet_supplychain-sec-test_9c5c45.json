@@ -1,0 +1,56 @@
+{
+    "spdxVersion": "SPDX-2.3",
+    "dataLicense": "CC0-1.0",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "name": "com.github.PenguinCabinet/supplychain-sec-test",
+    "documentNamespace": "https://spdx.org/spdxdocs/protobom/004f44cc-f9d5-471d-a2b3-e324a91906b2",
+    "creationInfo": {
+        "creators": [
+            "Tool: protobom-v0.0.0-20251121211614-4a0c364e1eb0+dirty",
+            "Tool: GitHub.com-Dependency-Graph"
+        ],
+        "created": "2025-11-24T03:56:05Z"
+    },
+    "packages": [
+        {
+            "name": "@ctrl/tinycolor",
+            "SPDXID": "SPDXRef-npm-ctrl-tinycolor-4.1.1-77238a",
+            "versionInfo": "4.1.1",
+            "downloadLocation": "NOASSERTION",
+            "filesAnalyzed": false,
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:npm/%40ctrl/tinycolor@4.1.1"
+                }
+            ]
+        },
+        {
+            "name": "com.github.PenguinCabinet/supplychain-sec-test",
+            "SPDXID": "SPDXRef-github-PenguinCabinet-supplychain-sec-test-main-c54061",
+            "versionInfo": "main",
+            "downloadLocation": "git+https://github.com/PenguinCabinet/supplychain-sec-test",
+            "filesAnalyzed": false,
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:github/PenguinCabinet/supplychain-sec-test@main"
+                }
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "spdxElementId": "SPDXRef-github-PenguinCabinet-supplychain-sec-test-main-c54061",
+            "relatedSpdxElement": "SPDXRef-npm-ctrl-tinycolor-4.1.1-77238a",
+            "relationshipType": "DEPENDS_ON"
+        },
+        {
+            "spdxElementId": "SPDXRef-DOCUMENT",
+            "relatedSpdxElement": "SPDXRef-github-PenguinCabinet-supplychain-sec-test-main-c54061",
+            "relationshipType": "DESCRIBES"
+        }
+    ]
+}
