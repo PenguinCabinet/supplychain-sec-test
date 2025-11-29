@@ -17,7 +17,7 @@ jobs:
         run: curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
       - name: Import grype DB
         run: |
-         curl -sSfL "$(grype db list | grep -E 'URL:' | awk '{print $2}' | tail -n 1)" -o db.tar.zst
+         wget "$(grype db list | grep -E 'URL:' | awk '{print $3}')" -O db.tar.zst
          grype db import db.tar.zst
       - name: Run grype scan
         run: grype sbom:SBOM.json -o table=scan-report.txt
