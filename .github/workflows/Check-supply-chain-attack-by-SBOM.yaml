@@ -1,5 +1,6 @@
 on:
-  push:
+  schedule:
+    - cron: '0 0 * * *' #毎日0時にスキャンを定期実行 
 
 name: Check supply chain attack by SBOM
 jobs:
@@ -10,18 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install SBOM in Github CLI
+        #SBOM Export機能を使うための拡張機能をインストール
         run: gh ext install advanced-security/gh-sbom
       - name: Export SBOM
+        #SBOM Exportを使い、SBOM.jsonに出力
         run: gh sbom > SBOM.json
       - name: Install grype
+        #Grypeをインストール
         run: curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
-      - name: Import grype DB
+      - name: Import latest grype DB
+        #最新の脆弱性データベースを取得しimport
         run: |
          wget "$(grype db list | grep -E 'URL:' | awk '{print $3}')" -O db.tar.zst
          grype db import db.tar.zst
       - name: Run grype scan
+        #脆弱性スキャンをして、scan-report.txtに出力
         run: grype sbom:SBOM.json -o table=scan-report.txt
       - name: Upload scan-report.txt as Artifact
+        #scan-report.txtをartifactとしてアップロード
         uses: actions/upload-artifact@v4
         with:
           name: scan-report.txt
