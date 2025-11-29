@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '0 0 * * *' #毎日0時にスキャンを定期実行 
+    - cron: '0 0 * * *' #毎日UTC 0時にスキャンを定期実行 
 
 name: Check supply chain attack by SBOM
 jobs:
@@ -28,7 +28,7 @@ jobs:
         #脆弱性スキャンをして、scan-report.txtに出力
         run: grype sbom:SBOM.json -o table=scan-report.txt
       - name: Upload scan-report.txt as Artifact
-        #scan-report.txtをartifactとしてアップロード
+        #scan-report.txtをArtifactとしてアップロード
         uses: actions/upload-artifact@v4
         with:
           name: scan-report.txt
