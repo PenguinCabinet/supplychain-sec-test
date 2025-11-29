@@ -1,0 +1,28 @@
+on:
+  push:
+
+name: Check supply chain attack by SBOM
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SBOM in Github CLI
+        run: gh ext install advanced-security/gh-sbom
+      - name: Export SBOM
+        run: gh sbom > SBOM.json
+      - name: Install grype
+        run: curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
+      - name: Import grype DB
+        run: |
+         curl -sSfL "$(grype db list | grep -E 'URL:' | awk '{print $2}' | tail -n 1)" -o db.tar.zst
+         grype db import db.tar.zst
+      - name: Run grype scan
+        run: grype sbom:SBOM.json -o table=scan-report.txt
+      - name: Upload scan-report.txt as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-report.txt
+          path: scan-report.txt
