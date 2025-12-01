@@ -2,7 +2,8 @@
   "name": "supplychain-sec-test",
   "version": "1.0.0",
   "dependencies": {
-    "@ctrl/tinycolor": "4.1.1"
+    "@ctrl/tinycolor": "4.1.1",
+    "ejs": "2.5.5"
   },
   "description": "",
   "main": "index.js",
